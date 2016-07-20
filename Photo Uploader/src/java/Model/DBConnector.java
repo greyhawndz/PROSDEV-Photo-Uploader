@@ -24,7 +24,7 @@ public class DBConnector {
     
     private DBConnector(){
         
-        this.dbName = "whatdo";
+        this.dbName = "photoupload";
         this.url = "jdbc:mysql://localhost:3306/" + dbName;
         this.driver = "com.mysql.jdbc.Driver";
         this.username = "root";
@@ -32,7 +32,7 @@ public class DBConnector {
         try{
             Class.forName(driver).newInstance();
             connect = DriverManager.getConnection(url, username, password);
-            System.out.println("umayos ka pls");
+          
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("no connection");

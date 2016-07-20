@@ -11,6 +11,15 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+        <div>
+             <form action="UploadPictureServlet" method="POST" enctype="multipart/form-data">
+                    <br>
+                    
+                    <input type="file" name="uploadImage" id="pictureid" class="btn btn-sm" onclick="enable()" accept="image/*"><br>
+                    <br>
+                    <input type="submit" id="uploadid" class="btn btn-default" value="Upload New Picture"><br>
+                    
+                </form>
+        </div>
     </body>
 </html>
