@@ -1,22 +1,28 @@
+package Controller;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
 
-import Model.Photo;
-import Model.PhotoHandler;
+
+
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.RequestContext;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
@@ -27,6 +33,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
  * @author William
  */
 @WebServlet(name = "PhotoUploaderServlet", urlPatterns = {"/PhotoUploaderServlet"})
+@MultipartConfig
 public class PhotoUploaderServlet extends HttpServlet {
 
     /**
@@ -67,7 +74,7 @@ public class PhotoUploaderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
     }
 
     /**
@@ -82,29 +89,32 @@ public class PhotoUploaderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        System.out.println("INSIDE SERVLET POST");
         System.out.println("Upload Picture servlet");
         String name = "";
        
         HttpSession session = request.getSession();
-        String destination = "C:\\Users\\WilliamPC\\Documents\\NetBeansProjects\\WEBAPDE MP\\web\\Images";
-        String username = (String) session.getAttribute("username");
+        //path is hardcoded. I still haven't figured out how to make it dynamic
+        String destination = "C:\\Users\\William\\Documents\\College\\3rd Year\\3rd Term\\PROSDEV\\Photo Uploader\\Photo Uploader\\web\\Images\\";
         
         if(ServletFileUpload.isMultipartContent(request)){
             try{
-                List<FileItem> multiparts = new ServletFileUpload( new DiskFileItemFactory()).parseRequest((RequestContext) request);
-                for(FileItem item: multiparts){
-                    if(!item.isFormField()){
-                        name = new File(item.getName()).getName();
-                        item.write( new File(destination + File.separator + name));
-                        System.out.println("Success!");
-                    }
+                
+                Part filePart = request.getPart("uploadImage");
+                if(filePart!= null){
+                    name = filePart.getSubmittedFileName();
+                    System.out.println("name is " +name);
+                    System.out.println("Destination is " +destination);
+                    InputStream fileContent = filePart.getInputStream();
+                    OutputStream fileOutput = new FileOutputStream(new File(destination+name));
                     
+                    int read = 0;
+                    byte[] bytes = new byte[1024];
+
+                    while ((read = fileContent.read(bytes)) != -1) {
+			fileOutput.write(bytes, 0, read);
+                    }
                 }
-                System.out.println("name is " +name);
-                System.out.println("username is " +username);
-                Photo pic = new Photo(username, name);
-                PhotoHandler.getInstance().upload(pic, username);
-                session.setAttribute("image", pic);
                 response.sendRedirect("uploadsuccess.jsp");
             }catch(Exception e){
                 response.sendRedirect("uploadfail.jsp");
