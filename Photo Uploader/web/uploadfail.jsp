@@ -12,7 +12,7 @@
         <title>Fail</title>
     </head>
     <body>
-        <h1>Upload Failed! please try again</h1><br><br>
+        <h1>Upload or Delete Failed! please try again</h1><br><br>
         <a href="index.jsp">Return</a>
     </body>
 </html>

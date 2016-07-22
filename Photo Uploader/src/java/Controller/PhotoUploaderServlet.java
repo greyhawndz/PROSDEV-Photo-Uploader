@@ -95,13 +95,15 @@ public class PhotoUploaderServlet extends HttpServlet {
        
         HttpSession session = request.getSession();
         //path is hardcoded. I still haven't figured out how to make it dynamic
-        String destination = "C:\\Users\\William\\Documents\\College\\3rd Year\\3rd Term\\PROSDEV\\Photo Uploader\\Photo Uploader\\web\\Images\\";
-        
+        String destination = "C:\\Users\\HKJ\\Documents\\PROSDEV-Photo-Uploader\\Photo Uploader\\web\\Images\\";
         if(ServletFileUpload.isMultipartContent(request)){
             try{
                 
                 Part filePart = request.getPart("uploadImage");
-                if(filePart!= null){
+                String del = String.valueOf(request.getParameter("but"));
+                System.out.println(del + "??");
+                if(filePart!= null && del.equals("Upload New Picture")){
+                    name = "";
                     name = filePart.getSubmittedFileName();
                     System.out.println("name is " +name);
                     System.out.println("Destination is " +destination);
@@ -114,6 +116,17 @@ public class PhotoUploaderServlet extends HttpServlet {
                     while ((read = fileContent.read(bytes)) != -1) {
 			fileOutput.write(bytes, 0, read);
                     }
+                }
+                else if (filePart != null && del.equals("Delete")){
+                    name = "";
+                    name = filePart.getSubmittedFileName();
+                    System.out.println("name : " + name);
+                    File p;
+                    p = new File(destination+name);
+                    if (!(name.length() == 0) && p.exists())
+                    p.delete();
+                    else
+                    throw new Exception("!");
                 }
                 response.sendRedirect("index.jsp");
             }catch(Exception e){

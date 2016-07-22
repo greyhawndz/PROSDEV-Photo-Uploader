@@ -22,8 +22,10 @@ and open the template in the editor.
                     
                     <input type="file" name="uploadImage" accept="image/*"><br>
                     <br>
-                    <input type="submit" value="Upload New Picture"><br>
-                    
+                    <input type="submit" name = "but" value="Upload New Picture"><br>
+                    <br>
+                    <input type="submit" name = "but" value="Delete"><br>
+                    <br>
                 </form>
             <br>
             <div>
