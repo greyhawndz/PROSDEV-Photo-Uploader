@@ -115,7 +115,7 @@ public class PhotoUploaderServlet extends HttpServlet {
 			fileOutput.write(bytes, 0, read);
                     }
                 }
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("uploadsuccess.jsp");
             }catch(Exception e){
                 response.sendRedirect("uploadfail.jsp");
                 e.printStackTrace(); 
