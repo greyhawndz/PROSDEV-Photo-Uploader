@@ -117,6 +117,7 @@ public class PhotoUploaderServlet extends HttpServlet {
 			fileOutput.write(bytes, 0, read);
                     }
                 }
+<<<<<<< HEAD
                 else if (filePart != null && del.equals("Delete")){
                     name = "";
                     name = filePart.getSubmittedFileName();
@@ -129,6 +130,9 @@ public class PhotoUploaderServlet extends HttpServlet {
                     throw new Exception("!");
                 }
                 response.sendRedirect("index.jsp");
+=======
+                response.sendRedirect("uploadsuccess.jsp");
+>>>>>>> origin/master
             }catch(Exception e){
                 response.sendRedirect("uploadfail.jsp");
                 e.printStackTrace(); 

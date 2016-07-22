@@ -35,10 +35,13 @@ and open the template in the editor.
                     
                     String destination = "Images\\";
                     ArrayList<String> fileNames = (ArrayList)request.getAttribute("names");
-                     Iterator<String> itr = fileNames.iterator();
-                    while(itr.hasNext()){
-                        out.println(" <img src=\"" +destination +itr.next()+"\" height=\"200\" width=\"200\"");
-                        out.println("<br>");
+                    if(fileNames != null){
+                        Iterator<String> itr = fileNames.iterator();
+                        while(itr.hasNext()){
+                            out.println(" <img src=\"" +destination +itr.next()+"\" height=\"200\" width=\"200\"");
+                            out.println("<br>");
+                        }
+                       
                     }
                 %>
                 <%--
