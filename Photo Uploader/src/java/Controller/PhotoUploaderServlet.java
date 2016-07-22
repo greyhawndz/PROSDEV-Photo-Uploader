@@ -95,7 +95,7 @@ public class PhotoUploaderServlet extends HttpServlet {
        
         HttpSession session = request.getSession();
         //path is hardcoded. I still haven't figured out how to make it dynamic
-        String destination = "C:\\Users\\HKJ\\Documents\\PROSDEV-Photo-Uploader\\Photo Uploader\\web\\Images\\";
+        String destination = "C:\\Users\\William\\Documents\\College\\3rd Year\\3rd Term\\PROSDEV\\Photo Uploader\\Photo Uploader\\web\\Images\\";
         if(ServletFileUpload.isMultipartContent(request)){
             try{
                 String status = "";

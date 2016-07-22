@@ -65,7 +65,7 @@ public class DisplayServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-                    String destination = "C:\\Users\\HKJ\\Documents\\PROSDEV-Photo-Uploader\\Photo Uploader\\web\\Images\\";
+                    String destination = "C:\\Users\\William\\Documents\\College\\3rd Year\\3rd Term\\PROSDEV\\Photo Uploader\\Photo Uploader\\web\\Images\\";
                     System.out.println("Hello");
                     File f = new File(destination);
                     File[] list = f.listFiles();
