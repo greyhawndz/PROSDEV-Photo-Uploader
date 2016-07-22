@@ -1,4 +1,6 @@
 
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.io.File"%>
 <!DOCTYPE html>
 <!--
@@ -11,6 +13,7 @@ and open the template in the editor.
         <title>Photo Upload</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <jsp:include page="/DisplayServlet" />
     </head>
     <body>
         <div>
@@ -25,14 +28,25 @@ and open the template in the editor.
             <br>
             <div>
                 <h1>Gallery</h1>
-                <br> 
+                <br>
+                <%
+                    
+                    String destination = "Images\\";
+                    ArrayList<String> fileNames = (ArrayList)request.getAttribute("names");
+                     Iterator<String> itr = fileNames.iterator();
+                    while(itr.hasNext()){
+                        out.println(" <img src=\"" +destination +itr.next()+"\" height=\"200\" width=\"200\"");
+                        out.println("<br>");
+                    }
+                %>
+                <%--
                    <c:forEach items="${imagenames}" var="imagename">
                        <h1>TesT</h1>
                         <img src="${pageContext.request.contextPath}/DisplayServlet/${imagename}">
                         <br>
                         
                     </c:forEach>
-                
+                --%>
                
             </div>
         </div>

@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -68,23 +69,31 @@ public class DisplayServlet extends HttpServlet {
                     System.out.println("Hello");
                     File f = new File(destination);
                     File[] list = f.listFiles();
-                    
+                    ArrayList<String> fileNames = new ArrayList();
                    for(int i = 0; i < list.length; i++){
                        System.out.println("Inside loop");
                        if(list[i].isFile()){
                         
+                        
+                        fileNames.add(list[i].getName());
+                        /*
                         FileInputStream fis = new FileInputStream(list[i]);
                         BufferedInputStream bis = new BufferedInputStream(fis);
                         BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream());
                         System.out.println("Gallery display " +list[i].getName());
+                        
                         for (int data; (data = bis.read()) > -1;) {
-                        
+                       
                         output.write(data);
-                       }
                         
+                       }
                         output.close();
+                        */
+                        
+                        
                         
                       }
+                       request.setAttribute("names", fileNames);
                    }
                   
                    
