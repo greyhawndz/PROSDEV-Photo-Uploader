@@ -98,10 +98,9 @@ public class PhotoUploaderServlet extends HttpServlet {
         String destination = "C:\\Users\\HKJ\\Documents\\PROSDEV-Photo-Uploader\\Photo Uploader\\web\\Images\\";
         if(ServletFileUpload.isMultipartContent(request)){
             try{
-                
+                String status = "";
                 Part filePart = request.getPart("uploadImage");
                 String del = String.valueOf(request.getParameter("but"));
-                System.out.println(del + "??");
                 if(filePart!= null && del.equals("Upload New Picture")){
                     name = "";
                     name = filePart.getSubmittedFileName();
@@ -117,7 +116,7 @@ public class PhotoUploaderServlet extends HttpServlet {
 			fileOutput.write(bytes, 0, read);
                     }
                 }
-<<<<<<< HEAD
+
                 else if (filePart != null && del.equals("Delete")){
                     name = "";
                     name = filePart.getSubmittedFileName();
@@ -129,10 +128,7 @@ public class PhotoUploaderServlet extends HttpServlet {
                     else
                     throw new Exception("!");
                 }
-                response.sendRedirect("index.jsp");
-=======
                 response.sendRedirect("uploadsuccess.jsp");
->>>>>>> origin/master
             }catch(Exception e){
                 response.sendRedirect("uploadfail.jsp");
                 e.printStackTrace(); 
