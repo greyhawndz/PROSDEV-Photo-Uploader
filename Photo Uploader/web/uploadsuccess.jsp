@@ -1,7 +1,7 @@
 <%-- 
     Document   : uploadsuccess
     Created on : Mar 31, 2015, 9:17:35 PM
-    Author     : WilliamPC
+    Author     : William
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>Upload success!</h1><br><br>
-        <a href="index.html">Back to main page</a>
+        <a href="index.jsp">Back to main page</a>
     </body>
 </html>
